@@ -43,6 +43,10 @@ $string['config'] = 'Configuration';
 $string['receipt'] = 'Receive a copy';
 $string['receipt_help'] = 'Receive a copy of the email being sent';
 
+// Strings for user context.
+$string['role_of_users'] = '{$a->role} of {$a->userlist}';
+$string['separator'] = ', ';
+
 $string['no_alternates'] = 'No alternate emails found for {$a->fullname}. Continue to make one.';
 
 $string['select_users'] = 'Select Users ...';

@@ -38,6 +38,10 @@ $string['config'] = 'Configuration';
 $string['receipt'] = 'Recevoir une copie';
 $string['receipt_help'] = 'Recevoir une copie du message envoyé';
 
+// Strings for user context.
+$string['role_of_users'] = '{$a->role} de {$a->userlist}';
+$string['separator'] = ', ';
+
 $string['no_alternates'] = 'Pas d\'adresse secondaire de trouvée pour {$a->fullname}. Poursuivre la création.';
 
 $string['select_users'] = 'Sélectionner les utilisateurs...';

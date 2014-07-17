@@ -141,10 +141,11 @@ foreach ($usercontextusers as $userid => $user) {
         continue;
     }
 
-    // As the mentor user is not in the course, the groups should be the same as their mentees.
+        // As the mentor user is not in the course, the groups should be the same as their mentees.
     $usergroups = $users_to_groups[$user->childid];
     if (isset($users_to_groups[$userid])) {
-        $usergroups = array_unique(array_merge($users_to_groups[$userid], $usergroups));
+        $usergroups = array_merge($users_to_groups[$userid], $usergroups);
+		$usergroups = array_map("unserialize", array_unique(array_map("serialize", $usergroups)));
     }
 
     // The role of the mentor user is the user context role relative to the mentee.
@@ -165,7 +166,7 @@ foreach ($usercontextusers as $userid => $user) {
     if (isset($users[$userid]->childsfullname)) {
         $user->childsfullname = $users[$userid]->childsfullname;
     }
-    $user->childsfullname[$user->role][] = $user->childfullname;
+    $user->childsfullname[$user->role][$user->childid] = $user->childfullname;
 
     // No longer needed at this point.
     unset($user->childid);

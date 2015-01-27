@@ -186,6 +186,15 @@ abstract class quickmail {
         });
     }
 
+    static function role_exists($roles, $name) {
+        foreach ($roles as $role) {
+            if ($role->shortname == $name) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     static function load_config($courseid) {
         global $DB;
 

@@ -132,8 +132,6 @@ foreach ($everyone as $userid => $user) {
     }
 }
 
-
-
 // Scan all user context users to merge duplicates together.
 foreach ($usercontextusers as $userid => $user) {
 
@@ -141,7 +139,7 @@ foreach ($usercontextusers as $userid => $user) {
         continue;
     }
 
-        // As the mentor user is not in the course, the groups should be the same as their mentees.
+    // As the mentor user is not in the course, the groups should be the same as their mentees.
     $usergroups = $users_to_groups[$user->childid];
     if (isset($users_to_groups[$userid])) {
         $usergroups = array_merge($users_to_groups[$userid], $usergroups);
@@ -160,6 +158,11 @@ foreach ($usercontextusers as $userid => $user) {
 
     // Keep only distinct roles allowed in the plugin configuration.
     $filterd = quickmail::filter_roles($userroles, $roles);
+
+    // Skip the user if no roles remaining or the user role is not on the list.
+    if (count($filterd) == 0 || !quickmail::role_exists($filterd, $user->role)) {
+        continue;
+    }
 
     // Combine the name of all childs relative to the role. This will be used to display the relation between them.
     $user->childsfullname = array();
